@@ -5164,10 +5164,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardSite',
   props: {
     post: Object
+  },
+  methods: {
+    formatDate: function formatDate(date) {
+      return luxon.DateTime.fromISO(date).setLocale('it').toLocaleString();
+    }
   }
 });
 
@@ -5183,6 +5189,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CardSite_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardSite.vue */ "./resources/js/frontoffice/Vue/components/CardSite.vue");
+//
+//
 //
 //
 //
@@ -27957,6 +27965,10 @@ var render = function () {
           _vm._v(_vm._s(_vm.post.content)),
         ]),
         _vm._v(" "),
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v(_vm._s(_vm.formatDate(_vm.post.date))),
+        ]),
+        _vm._v(" "),
         _c(
           "a",
           {
@@ -27991,17 +28003,19 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4",
-    },
-    _vm._l(_vm.arrPosts, function (post) {
-      return _c("card-site", { key: post.id, attrs: { post: post } })
-    }),
-    1
-  )
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass:
+          "row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4",
+      },
+      _vm._l(_vm.arrPosts, function (post) {
+        return _c("card-site", { key: post.id, attrs: { post: post } })
+      }),
+      1
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
