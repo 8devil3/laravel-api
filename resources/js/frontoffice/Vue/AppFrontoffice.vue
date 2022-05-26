@@ -1,20 +1,15 @@
 <template>
-   <div>
-      <header-site />
-      <card-site />
-   </div>
+   <main-site :arrPosts="arrPosts" />
 </template>
 
 <script>
-import HeaderSite from './components/HeaderSite.vue'
-import CardSite from './components/CardSite.vue'
+import MainSite from './components/MainSite.vue'
 import axios from 'axios'
 
 export default {
    name: 'AppFrontoffice',
    components: {
-      HeaderSite,
-      CardSite
+      MainSite,
    },
    data(){
       return {
@@ -33,11 +28,7 @@ export default {
          if (url) {
             axios.get(url)
             .then((result) => {
-               console.log(result.data);
-
                this.arrPosts = result.data.response.data;
-
-               this.nextPageURL = result.data.response.next_page_url;
             });
          }
       }
