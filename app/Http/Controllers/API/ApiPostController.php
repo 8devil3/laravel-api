@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class ApiPostController extends Controller
 {
@@ -15,10 +16,13 @@ class ApiPostController extends Controller
     */
    public function index()
    {
-      $apiPosts = Post::paginate(20);
+      $apiPosts = Post::join('users', 'posts.user_id', 'users.id')
+                        ->join('categories', 'posts.category_id', 'categories.id')
+                        ->select('posts.*', 'users.name as author', 'categories.name as category')
+                        ->paginate(20);
 
       return response()->json([
-         'status' => 'success',
+         'success' => true,
          'response' => $apiPosts
       ]);
    }
@@ -50,9 +54,18 @@ class ApiPostController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-   public function show($id)
+   public function show($slug)
    {
-      //
+      $apiPost = Post::join('users', 'posts.user_id', 'users.id')
+      ->join('categories', 'posts.category_id', 'categories.id')
+      ->select('posts.*', 'users.name as author', 'categories.name as category')
+      ->where('posts.slug', $slug)
+      ->first();
+
+      return response()->json([
+         'success' => true,
+         'response' => $apiPost
+      ]);
    }
 
    /**

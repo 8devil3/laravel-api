@@ -15,7 +15,7 @@
 
    <x-navheader/>
 
-   <main class="container py-4">
+   <main class="container py-4 mt-5">
       @yield('content')
    </main>
 

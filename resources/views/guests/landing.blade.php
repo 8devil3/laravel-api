@@ -3,9 +3,6 @@
 @section('title', 'Welcome')
 
 @section('content')
-   <h1 class="text-center mb-3">Welcome</h1>
-   <h3>Posts list</h3>
-   <hr>
    <div id="appFrontoffice"></div>
 
    {{-- <div class="container">

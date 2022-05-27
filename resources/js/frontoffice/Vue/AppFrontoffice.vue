@@ -1,37 +1,17 @@
 <template>
-   <main-site :arrPosts="arrPosts" />
+<div>
+   <router-view></router-view>
+   <footer-site />
+</div>
 </template>
 
 <script>
-import MainSite from './components/MainSite.vue'
-import axios from 'axios'
+import FooterSite from './components/FooterSite.vue'
 
 export default {
    name: 'AppFrontoffice',
    components: {
-      MainSite,
-   },
-   data(){
-      return {
-         baseURL: 'http://localhost:8000',
-         apiURL: '/api/posts',
-         nextPageURL: null,
-         prevPageURL: null,
-         arrPosts: []
-      }
-   },
-   created() {
-      this.getData(this.baseURL + this.apiURL);
-   },
-   methods: {
-      getData(url){
-         if (url) {
-            axios.get(url)
-            .then((result) => {
-               this.arrPosts = result.data.response.data;
-            });
-         }
-      }
+      FooterSite,
    }
 }
 </script>
