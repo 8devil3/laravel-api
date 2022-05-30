@@ -9,16 +9,22 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
-   private function getValidators($model) {
+   private function getValidation($model) {
       return [
          'title' => 'required|max:255',
          'slug' => [
             'required',
             Rule::unique('posts')->ignore($model),
             'max:255'
+         ],
+         'img' => [
+            Rule::dimensions()->maxWidth(2560)->maxHeight(2560),
+            'image'
          ],
          'category_id' => 'required|exists:App\Category,id',
          'content' => 'required',
@@ -64,11 +70,16 @@ class PostController extends Controller
     */
    public function store(Request $request)
    {
-      $formData = $request->all() + [
-         'user_id' => Auth::user()->id
-      ];
+      $request->validate($this->getValidation(null));
 
-      $post = Post::create($formData);
+      $formData = $request->all();
+
+      $data = [
+         'user_id' => Auth::user()->id,
+         'img' => Storage::put('uploads', $formData['img'])
+      ] + $formData;
+
+      $post = Post::create($data);
 
       return redirect()->route('admin.posts.show', $post->slug);
    }
@@ -115,12 +126,24 @@ class PostController extends Controller
    {
       if (Auth::user()->id !== $post->user_id) abort(403);
 
-      // $request->validate($this->getValidators($post));
+      $request->validate($this->getValidation($post));
 
       $data = $request->all();
 
+      if (array_key_exists('img', $data)){
+
+         Storage::delete($post->img);
+
+         $data = [
+            'img' => Storage::put('uploads', $data['img'])
+         ] + $data;
+      }
+
       $post->update($data);
-      $post->tags()->sync($data['tags']);
+
+      if (array_key_exists('tags', $data)) {
+         $post->tags()->sync($data['tags']);
+      };
 
       return redirect()->route('admin.posts.show', $post->slug);
    }

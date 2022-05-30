@@ -11,7 +11,7 @@
 
    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 </head>
-<body>
+<body class="pt-5">
 
    <x-navheader/>
 

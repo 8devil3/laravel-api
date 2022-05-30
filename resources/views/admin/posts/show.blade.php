@@ -7,6 +7,8 @@
       <h1>{{ $post->title }}</h1>
       <div>Author: <span style="color: #3962d1">{{ $post->user->name }}</span> | City: <span style="color: #3962d1">{{ $post->user->user_info->city }}</span> | Published on: <span style="color: #3962d1"><time>{{ date('d/m/Y', strtotime($post->date)) }}</time></span></div>
 
+      <img src="{{ asset('storage/'. $post->img) }}" alt="{{ $post->title }}" class="img-fluid my-2">
+
       <p class="mt-4">{{ $post->content }}</p>
 
       <hr>

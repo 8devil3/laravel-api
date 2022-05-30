@@ -1,11 +1,11 @@
 @extends('layouts.backoffice')
 
-@section('title', 'Posts list')
+@section('title', 'My posts list')
 
 @section('content')
    <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-         <h1>Your posts list</h1>
+         <h1>My posts list</h1>
          <a href="{{ route('admin.posts.create') }}" class="btn btn-success">+ Add post</a>
       </div>
       <table class="table table-hover">
@@ -27,12 +27,14 @@
                   <td scope="row">{{ $post->category->name }}</td>
                   <td>{{ substr($post->content, 0, 64) }}...</td>
                   <td>
-                     <a href="{{ route('admin.posts.show', $post->slug) }}" class="btn btn-primary">View</a>
-                     <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-warning mx-2">Edit</a>
+                     <div class="d-flex align-items-center">
+                        <a href="{{ route('admin.posts.show', $post->slug) }}" class="btn btn-primary" title="View post"><i class="fa-solid fa-eye"></i></a>
+                        <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-warning mx-2" title="Edit post"><i class="fa-solid fa-file-pen"></i></a>
 
-                     <!-- Popup Trigger -->
-                     <button type="button" data-baseurl="{{ route('admin.posts.index') }}" data-slug="{{ $post->slug }}" data-type="post" class="btn btn-danger btn-del" data-bs-toggle="modal" data-bs-target="#delPopup">Delete</button>
-                     <!-- / -->
+                        <!-- Popup Trigger -->
+                        <button type="button" data-baseurl="{{ route('admin.posts.index') }}" data-slug="{{ $post->slug }}" data-type="post" class="btn btn-danger btn-del" data-bs-toggle="modal" data-bs-target="#delPopup" title="Delete post"><i class="fa-solid fa-trash-can"></i></button>
+                        <!-- / -->
+                     </div>
                   </td>
                </tr>
             @endforeach

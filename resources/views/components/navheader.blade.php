@@ -2,7 +2,7 @@
    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
       <div class="container">
 
-         <a class="navbar-brand" href="{{ url('/') }}">
+         <a class="navbar-brand" href="{{ route('guestsHome') }}">
             {{ config('app.name', 'Laravel') }}
          </a>
 
@@ -31,11 +31,11 @@
                @else
                   <li class="nav-item d-block dropdown">
                      {{-- posts btn --}}
-                     <a href="{{ route('admin.posts.index') }}" aria-controls="posts" class="btn btn-link">My posts</a>
+                     <a href="{{ route('admin.posts.index') }}" aria-controls="posts" class="btn btn-light me-2">My posts</a>
                   </li>
                   <li class="nav-item d-block dropdown">
                      {{-- categories btn --}}
-                     <a href="{{ route('admin.categories.index') }}" aria-controls="categories" class="btn btn-link">Categories</a>
+                     <a href="{{ route('admin.categories.index') }}" aria-controls="categories" class="btn btn-light me-2">Categories</a>
                   </li>
                   <li class="nav-item dropdown">
                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

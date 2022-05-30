@@ -4,7 +4,7 @@
 
 
 @section('content')
-<form method="POST" action="{{ route('admin.posts.update', $post->slug) }}" id="input-form">
+<form method="POST" action="{{ route('admin.posts.update', $post->slug) }}" id="input-form" enctype="multipart/form-data">
    @csrf
    @method('PUT')
 
@@ -20,10 +20,33 @@
    </div>
 
    <div class="mb-3">
+      <label for="category_id" class="form-label">Category</label>
+      <select name="category_id" id="select-category" class="form-control @error('category') is-invalid @enderror">
+         <option value="" default>Select a category</option>
+         @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+         @endforeach
+      </select>
+
+      @error('category')
+         <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+   </div>
+
+   <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
       <input type="text" class="form-control @error('slug') is-invalid @enderror" id="input-slug" name="slug" aria-describedby="slug" value="{{ old('slug', $post->slug) }}">
 
       @error('slug')
+         <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+   </div>
+
+   <div class="mb-3">
+      <label for="img" class="form-label">Image</label>
+      <input name="img" class="form-control @error('img') is-invalid @enderror" type="file" id="formFile" accept="image/*">
+
+      @error('img')
          <div class="alert alert-danger">{{ $message }}</div>
       @enderror
    </div>

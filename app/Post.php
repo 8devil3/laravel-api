@@ -13,6 +13,7 @@ class Post extends Model
       'author',
       'date',
       'slug',
+      'img',
       'user_id',
       'category_id'
    ];
