@@ -19,7 +19,14 @@ class ApiPostController extends Controller
       $apiPosts = Post::join('users', 'posts.user_id', 'users.id')
                         ->join('categories', 'posts.category_id', 'categories.id')
                         ->select('posts.*', 'users.name as author', 'categories.name as category')
+                        ->orderBy('date', 'desc')
                         ->paginate(20);
+
+      foreach ($apiPosts as $apiPost) {
+         if ($apiPost->img !== null){
+            $apiPost->img = asset('storage/' . $apiPost->img);
+         }
+      }
 
       return response()->json([
          'success' => true,
@@ -62,10 +69,24 @@ class ApiPostController extends Controller
       ->where('posts.slug', $slug)
       ->first();
 
-      return response()->json([
-         'success' => true,
-         'response' => $apiPost
-      ]);
+      if ($apiPost) {
+
+         if ($apiPost->img !== null) {
+            $apiPost->img = asset('storage/' . $apiPost->img);
+         }
+
+         return response()->json([
+            'success' => true,
+            'response' => $apiPost
+         ]);
+
+      } else {
+
+         return response()->json([
+            'success' => false
+         ]);
+
+      };
    }
 
    /**

@@ -5145,10 +5145,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardSite',
   props: {
     post: Object
+  },
+  methods: {
+    formatDate: function formatDate(date) {
+      if (date != '' && date != null) {
+        return luxon.DateTime.fromFormat(date, 'yyyy-MM-dd hh:mm:ss').toFormat('dd-MM-yyyy');
+      } else {//nothing
+      }
+    }
   }
 });
 
@@ -5311,6 +5321,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostShow',
@@ -5335,13 +5348,19 @@ __webpack_require__.r(__webpack_exports__);
 
       if (url) {
         axios.get(url).then(function (result) {
-          // console.log(this.baseURL + this.apiURL + this.slug);
           if (result.data.response) {
+            // console.log(result.data.response);
             _this.post = result.data.response;
           } else {
             _this.pageNotFound = true;
           }
         });
+      }
+    },
+    formatDate: function formatDate(date) {
+      if (date != '' && date != null) {
+        return luxon.DateTime.fromFormat(date, 'yyyy-MM-dd hh:mm:ss').toFormat('dd-MM-yyyy');
+      } else {//nothing
       }
     }
   }
@@ -28830,6 +28849,15 @@ var render = function () {
             },
           },
           [
+            _vm.post.img != null
+              ? _c("div", [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: { src: _vm.post.img, alt: _vm.post.title },
+                  }),
+                ])
+              : _c("div"),
+            _vm._v(" "),
             _c("div", { staticClass: "card-body d-flex flex-column" }, [
               _c("h4", { staticClass: "card-title" }, [
                 _vm._v(_vm._s(_vm.post.title)),
@@ -28840,7 +28868,7 @@ var render = function () {
                 _vm._v(" " + _vm._s(_vm.post.author)),
                 _c("br"),
                 _c("i", { staticClass: "fa-solid fa-calendar-days" }),
-                _vm._v(" " + _vm._s(_vm.post.date)),
+                _vm._v(" " + _vm._s(_vm.formatDate(_vm.post.date))),
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "card-text" }, [
@@ -29030,14 +29058,21 @@ var render = function () {
           [
             _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
             _vm._v(" "),
-            _c("hr"),
+            _vm.post.img
+              ? _c("div", [
+                  _c("img", {
+                    staticClass: "img-fluid my-2",
+                    attrs: { src: _vm.post.img, alt: _vm.post.title },
+                  }),
+                ])
+              : _c("div"),
             _vm._v(" "),
             _c("p", [
               _c("i", { staticClass: "fa-solid fa-user" }),
               _vm._v(" " + _vm._s(_vm.post.author)),
               _c("br"),
               _c("i", { staticClass: "fa-solid fa-calendar-days" }),
-              _vm._v(" " + _vm._s(_vm.post.date)),
+              _vm._v(" " + _vm._s(_vm.formatDate(_vm.post.date))),
             ]),
             _vm._v(" "),
             _c("p", [_vm._v(_vm._s(_vm.post.content))]),

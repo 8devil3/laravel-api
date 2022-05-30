@@ -5,8 +5,11 @@
    </div>
    <div v-else>
       <h1>{{ post.title }}</h1>
-      <hr>
-      <p><i class="fa-solid fa-user"></i> {{ post.author }}<br><i class="fa-solid fa-calendar-days"></i> {{ post.date }}</p>
+      <div v-if="post.img">
+         <img :src="post.img" :alt="post.title" class="img-fluid my-2">
+      </div>
+      <div v-else></div>
+      <p><i class="fa-solid fa-user"></i> {{ post.author }}<br><i class="fa-solid fa-calendar-days"></i> {{ formatDate(post.date) }}</p>
       <p>{{ post.content }}</p>
       <hr>
       <router-link :to="{name: 'postIndex'}">Back to all</router-link>
@@ -39,13 +42,20 @@ export default {
          if (url) {
             axios.get(url)
             .then(result => {
-               // console.log(this.baseURL + this.apiURL + this.slug);
                if (result.data.response) {
+                  // console.log(result.data.response);
                   this.post = result.data.response;
                } else {
                   this.pageNotFound = true;
                }
             });
+         }
+      },
+      formatDate(date){
+         if (date != '' && date != null){
+            return luxon.DateTime.fromFormat(date, 'yyyy-MM-dd hh:mm:ss').toFormat('dd-MM-yyyy');
+         } else {
+            //nothing
          }
       }
    }
