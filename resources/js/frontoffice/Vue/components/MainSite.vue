@@ -9,20 +9,20 @@
             <li class="page-item" :class="{disabled: currentPage == 1}" @click="getAllPostsData(firstPageURL)"><a class="page-link">First</a></li>
             <li class="page-item" :class="{disabled: currentPage == 1}" @click="getAllPostsData(previousPageURL)"><a class="page-link">Previous</a></li>
 
-            <li v-if="currentPage > 3" class="page-item" @click="getAllPostsData(paginationURL + parseInt(currentPage - 3))"><a class="page-link">{{ parseInt(currentPage - 3) }}</a></li>
+            <li v-if="currentPage > 3" class="page-item" @click="getAllPostsData(paginationURL + (currentPage - 3))"><a class="page-link">{{ currentPage - 3 }}</a></li>
             <li v-else></li>
-            <li v-if="currentPage > 2" class="page-item" @click="getAllPostsData(paginationURL + parseInt(currentPage - 2))"><a class="page-link">{{ parseInt(currentPage - 2) }}</a></li>
+            <li v-if="currentPage > 2" class="page-item" @click="getAllPostsData(paginationURL + (currentPage - 2))"><a class="page-link">{{ currentPage - 2 }}</a></li>
             <li v-else></li>
-            <li v-if="currentPage > 1" class="page-item" @click="getAllPostsData(previousPageURL)"><a class="page-link">{{ parseInt(currentPage - 1) }}</a></li>
+            <li v-if="currentPage > 1" class="page-item" @click="getAllPostsData(previousPageURL)"><a class="page-link">{{ currentPage - 1 }}</a></li>
             <li v-else></li>
 
             <li class="page-item active"><span class="page-link">{{ currentPage }}</span></li>
 
-            <li v-if="currentPage < lastPage-1" class="page-item" @click="getAllPostsData(nextPageURL)"><a class="page-link">{{ parseInt(currentPage + 1) }}</a></li>
+            <li v-if="currentPage < lastPage-1" class="page-item" @click="getAllPostsData(nextPageURL)"><a class="page-link">{{ currentPage + 1 }}</a></li>
             <li v-else></li>
-            <li v-if="currentPage < lastPage-2" class="page-item" @click="getAllPostsData(paginationURL + parseInt(currentPage + 2))"><a class="page-link">{{ parseInt(currentPage + 2) }}</a></li>
+            <li v-if="currentPage < lastPage-2" class="page-item" @click="getAllPostsData(paginationURL + (currentPage + 2))"><a class="page-link">{{ currentPage + 2 }}</a></li>
             <li v-else></li>
-            <li v-if="currentPage < lastPage-3" class="page-item" @click="getAllPostsData(paginationURL + parseInt(currentPage + 3))"><a class="page-link">{{ parseInt(currentPage + 3) }}</a></li>
+            <li v-if="currentPage < lastPage-3" class="page-item" @click="getAllPostsData(paginationURL + (currentPage + 3))"><a class="page-link">{{ currentPage + 3 }}</a></li>
             <li v-else></li>
 
             <li class="page-item" :class="{disabled: currentPage == lastPage}" @click="getAllPostsData(nextPageURL)"><a class="page-link">Next</a></li>
@@ -52,11 +52,12 @@ export default {
          nextPageURL: null,
          currentPage: null,
          lastPage: null,
-         paginationURL: this.baseURL + this.apiURL + '?page='
+         paginationURL: null
       }
    },
    created() {
       this.getAllPostsData(this.baseURL + this.apiURL);
+      this.paginationURL = this.baseURL + this.apiURL + '?page=';
    },
    methods: {
       getAllPostsData(url){

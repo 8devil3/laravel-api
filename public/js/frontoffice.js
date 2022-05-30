@@ -5253,11 +5253,12 @@ __webpack_require__.r(__webpack_exports__);
       nextPageURL: null,
       currentPage: null,
       lastPage: null,
-      paginationURL: this.baseURL + this.apiURL + '?page='
+      paginationURL: null
     };
   },
   created: function created() {
     this.getAllPostsData(this.baseURL + this.apiURL);
+    this.paginationURL = this.baseURL + this.apiURL + '?page=';
   },
   methods: {
     getAllPostsData: function getAllPostsData(url) {
@@ -29080,14 +29081,14 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.getAllPostsData(
-                        _vm.paginationURL + parseInt(_vm.currentPage - 3)
+                        _vm.paginationURL + (_vm.currentPage - 3)
                       )
                     },
                   },
                 },
                 [
                   _c("a", { staticClass: "page-link" }, [
-                    _vm._v(_vm._s(parseInt(_vm.currentPage - 3))),
+                    _vm._v(_vm._s(_vm.currentPage - 3)),
                   ]),
                 ]
               )
@@ -29101,14 +29102,14 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.getAllPostsData(
-                        _vm.paginationURL + parseInt(_vm.currentPage - 2)
+                        _vm.paginationURL + (_vm.currentPage - 2)
                       )
                     },
                   },
                 },
                 [
                   _c("a", { staticClass: "page-link" }, [
-                    _vm._v(_vm._s(parseInt(_vm.currentPage - 2))),
+                    _vm._v(_vm._s(_vm.currentPage - 2)),
                   ]),
                 ]
               )
@@ -29127,7 +29128,7 @@ var render = function () {
                 },
                 [
                   _c("a", { staticClass: "page-link" }, [
-                    _vm._v(_vm._s(parseInt(_vm.currentPage - 1))),
+                    _vm._v(_vm._s(_vm.currentPage - 1)),
                   ]),
                 ]
               )
@@ -29152,7 +29153,7 @@ var render = function () {
                 },
                 [
                   _c("a", { staticClass: "page-link" }, [
-                    _vm._v(_vm._s(parseInt(_vm.currentPage + 1))),
+                    _vm._v(_vm._s(_vm.currentPage + 1)),
                   ]),
                 ]
               )
@@ -29166,14 +29167,14 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.getAllPostsData(
-                        _vm.paginationURL + parseInt(_vm.currentPage + 2)
+                        _vm.paginationURL + (_vm.currentPage + 2)
                       )
                     },
                   },
                 },
                 [
                   _c("a", { staticClass: "page-link" }, [
-                    _vm._v(_vm._s(parseInt(_vm.currentPage + 2))),
+                    _vm._v(_vm._s(_vm.currentPage + 2)),
                   ]),
                 ]
               )
@@ -29187,14 +29188,14 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.getAllPostsData(
-                        _vm.paginationURL + parseInt(_vm.currentPage + 3)
+                        _vm.paginationURL + (_vm.currentPage + 3)
                       )
                     },
                   },
                 },
                 [
                   _c("a", { staticClass: "page-link" }, [
-                    _vm._v(_vm._s(parseInt(_vm.currentPage + 3))),
+                    _vm._v(_vm._s(_vm.currentPage + 3)),
                   ]),
                 ]
               )
