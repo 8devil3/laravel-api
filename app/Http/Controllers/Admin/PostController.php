@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\Types\Nullable;
 
 
 class PostController extends Controller
@@ -24,7 +25,8 @@ class PostController extends Controller
          ],
          'img' => [
             Rule::dimensions()->maxWidth(2560)->maxHeight(2560),
-            'image'
+            'image',
+            'nullable'
          ],
          'category_id' => 'required|exists:App\Category,id',
          'content' => 'required',

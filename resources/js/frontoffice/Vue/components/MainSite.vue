@@ -10,20 +10,20 @@
             <li class="page-item" :class="{disabled: currentPage == 1}" @click="getAllPostsData(previousPageURL)"><a class="page-link">Previous</a></li>
 
             <li v-if="currentPage > 3" class="page-item" @click="getAllPostsData(paginationURL + (currentPage - 3))"><a class="page-link">{{ currentPage - 3 }}</a></li>
-            <li v-else></li>
+            <template v-else></template>
             <li v-if="currentPage > 2" class="page-item" @click="getAllPostsData(paginationURL + (currentPage - 2))"><a class="page-link">{{ currentPage - 2 }}</a></li>
-            <li v-else></li>
+            <template v-else></template>
             <li v-if="currentPage > 1" class="page-item" @click="getAllPostsData(previousPageURL)"><a class="page-link">{{ currentPage - 1 }}</a></li>
-            <li v-else></li>
+            <template v-else></template>
 
             <li class="page-item active"><span class="page-link">{{ currentPage }}</span></li>
 
             <li v-if="currentPage < lastPage-1" class="page-item" @click="getAllPostsData(nextPageURL)"><a class="page-link">{{ currentPage + 1 }}</a></li>
-            <li v-else></li>
+            <template v-else></template>
             <li v-if="currentPage < lastPage-2" class="page-item" @click="getAllPostsData(paginationURL + (currentPage + 2))"><a class="page-link">{{ currentPage + 2 }}</a></li>
-            <li v-else></li>
+            <template v-else></template>
             <li v-if="currentPage < lastPage-3" class="page-item" @click="getAllPostsData(paginationURL + (currentPage + 3))"><a class="page-link">{{ currentPage + 3 }}</a></li>
-            <li v-else></li>
+            <template v-else></template>
 
             <li class="page-item" :class="{disabled: currentPage == lastPage}" @click="getAllPostsData(nextPageURL)"><a class="page-link">Next</a></li>
             <li class="page-item" :class="{disabled: currentPage == lastPage}" @click="getAllPostsData(lastPageURL)"><a class="page-link">Last</a></li>

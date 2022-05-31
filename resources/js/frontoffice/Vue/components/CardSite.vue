@@ -2,10 +2,10 @@
 <div class="col">
    <article class="card h-100">
       <router-link :to="{ name: 'postShow', params: { slug: post.slug } }">
-         <div v-if="post.img != null">
+         <template v-if="post.img != null">
             <img :src="post.img" :alt="post.title" class="card-img-top">
-         </div>
-         <div v-else></div>
+         </template>
+         <template v-else></template>
          <div class="card-body d-flex flex-column">
             <h4 class="card-title">{{ post.title }}</h4>
             <p class="card-text"><i class="fa-solid fa-user"></i> {{ post.author }}<br><i class="fa-solid fa-calendar-days"></i> {{ formatDate(post.date) }}</p>
