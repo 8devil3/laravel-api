@@ -1,7 +1,6 @@
 <template>
 <div>
-   <h1 class="text-center mb-3">Welcome</h1>
-   <h3>Posts list</h3>
+   <h1 class="text-center mb-3">All posts</h1>
    <hr>
    <main-site />
 </div>
@@ -11,7 +10,7 @@
 import MainSite from '../components/MainSite.vue'
 
 export default {
-   name: 'PostIndex',
+   name: 'PostsIndex',
    components: {
       MainSite
    }

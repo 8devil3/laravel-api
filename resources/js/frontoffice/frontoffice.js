@@ -11,6 +11,7 @@ import VueRouter from 'vue-router';
 
 import PageAbout from './Vue/pages/PageAbout.vue';
 import PostsIndex from './Vue/pages/PostsIndex.vue';
+import LandingPage from './Vue/pages/LandingPage.vue';
 import PostShow from './Vue/pages/PostShow.vue';
 
 
@@ -21,7 +22,12 @@ const router = new VueRouter({
    routes: [
       {
          path: '/',
-         name: 'postIndex',
+         name: 'landingPage',
+         component: LandingPage
+      },
+      {
+         path: '/index',
+         name: 'postsIndex',
          component: PostsIndex
       },
       {
