@@ -1,11 +1,16 @@
 <template>
    <div>
-   <h1 class="text-center">Welcome!</h1>
-   <h3>Latest posts</h3>
-   <hr>
-   <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-      <card-site v-for="post in arrPosts" :key="post.id" :post="post"/>
-   </div>
+      <h1 class="text-center">Welcome!</h1>
+      <h3>Latest posts</h3>
+      <hr>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+         <card-site v-for="post in arrPosts" :key="post.id" :post="post"/>
+      </div>
+      <div class="row mt-4 justify-content-center">
+         <div class="col-auto">
+            <router-link :to="{name: 'postsIndex'}" class="btn btn-primary">All posts</router-link>
+         </div>
+      </div>
    </div>
 </template>
 
