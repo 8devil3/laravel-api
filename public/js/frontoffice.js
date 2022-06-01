@@ -29427,7 +29427,7 @@ var render = function () {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "postIndex" } } }, [
+      _c("router-link", { attrs: { to: { name: "postsIndex" } } }, [
         _vm._v("Back to all posts"),
       ]),
     ],

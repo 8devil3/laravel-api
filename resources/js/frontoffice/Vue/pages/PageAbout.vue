@@ -12,7 +12,7 @@
    Quo maxime, earum aspernatur repellendus illum dolore enim mollitia modi neque accusamus odit reprehenderit deleniti nostrum rem consectetur exercitationem delectus placeat aliquam facilis quam non, hic repellat. Eum, illo sapiente?
    Ipsam praesentium esse iusto magni doloremque pariatur dolorum dignissimos, ad nesciunt illum perferendis accusamus cumque, impedit architecto aliquid minus aspernatur porro quas inventore harum! Quia sapiente ut assumenda officia voluptas.</p>
    <hr>
-   <router-link :to="{name: 'postIndex'}">Back to all posts</router-link>
+   <router-link :to="{name: 'postsIndex'}">Back to all posts</router-link>
 </div>
 </template>
 
